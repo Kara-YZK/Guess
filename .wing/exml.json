@@ -1,0 +1,20 @@
+{
+  "172b13ff201": {
+    "path": "../resource/Game/GameBegin.ts",
+    "class": "GameBegin",
+    "parentPath": ""
+  },
+  "global": {
+    "globalAutoLayerMarkEnable": true
+  },
+  "172b850b532": {
+    "path": "Game/LevelIcon.ts",
+    "class": "LevelIcon",
+    "parentPath": ""
+  },
+  "172b8564915": {
+    "path": "Game/LevelIcon.ts",
+    "class": "LevelIcon",
+    "parentPath": "resource/eui_skins/ButtonSkin.exml"
+  }
+}
