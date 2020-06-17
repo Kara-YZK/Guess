@@ -16,5 +16,10 @@
     "path": "Game/LevelIcon.ts",
     "class": "LevelIcon",
     "parentPath": "resource/eui_skins/ButtonSkin.exml"
+  },
+  "172bd197a0a": {
+    "path": "Game/SceneGame.ts",
+    "class": "SceneGame",
+    "parentPath": ""
   }
 }

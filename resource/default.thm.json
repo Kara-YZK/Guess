@@ -15,7 +15,9 @@
 		"eui.ItemRenderer": "resource/eui_skins/ItemRendererSkin.exml",
 		"SceneBegin": "resource/Game/SceneBegin.exml",
 		"SceneLevel": "resource/Game/SceneLevel.exml",
-		"LevelIcon": "resource/Game/LevelIcon.exml"
+		"LevelIcon": "resource/Game/LevelIcon.exml",
+		"SceneGame": "resource/Game/SceneGame.exml",
+		"Word": "resource/Game/Word.exml"
 	},
 	"autoGenerateExmlsList": true,
 	"exmls": [
@@ -34,7 +36,9 @@
 		"resource/eui_skins/VSliderSkin.exml",
 		"resource/Game/LevelIcon.exml",
 		"resource/Game/SceneBegin.exml",
-		"resource/Game/SceneLevel.exml"
+		"resource/Game/SceneGame.exml",
+		"resource/Game/SceneLevel.exml",
+		"resource/Game/Word.exml"
 	],
 	"path": "resource/default.thm.json"
 }

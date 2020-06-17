@@ -130,6 +130,13 @@ class SceneLevel extends eui.Component implements  eui.UIComponent {
 			this.arrow.y = icon.y;
 			//记录指示箭头指向的关卡
 			this.sel_level = icon.Level;
+		}else{
+			//点击的关卡就是箭头指着的关卡，则直接进入并开始游戏
+			this.parent.addChild(SceneGame.Shared());
+			//传入点击的关卡所在的关卡数组中的下标
+			SceneGame.Shared().initLevel(icon.Level - 1);
+			this.parent.removeChild(this);
+			
 		}
 	}
 }

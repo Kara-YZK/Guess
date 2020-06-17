@@ -12,7 +12,7 @@ var SceneLevel = (function (_super) {
     __extends(SceneLevel, _super);
     function SceneLevel() {
         var _this = _super.call(this) || this;
-        //选中的关卡
+        //选中的关卡(指示箭头指向的)
         _this.sel_level = 0;
         //声明一个数组，存放关卡按钮
         _this.LevelIcons = [];
@@ -103,11 +103,29 @@ var SceneLevel = (function (_super) {
      * 点击返回按钮的响应函数
      */
     SceneLevel.prototype.back_tap = function () {
+        this.parent.addChild(SceneBegin.Shared());
+        this.parent.removeChild(this);
     };
     /**
      * 点击关卡的响应事件
      */
-    SceneLevel.prototype.icon_tap = function () {
+    SceneLevel.prototype.icon_tap = function (e) {
+        //获取被点击的关卡按钮
+        var icon = e.currentTarget;
+        if (this.sel_level != icon.Level) {
+            //如果指示箭头指向的关卡不是我们点击的关卡，则移动指示箭头到点击关卡处
+            this.arrow.x = icon.x + icon.width / 2;
+            this.arrow.y = icon.y;
+            //记录指示箭头指向的关卡
+            this.sel_level = icon.Level;
+        }
+        else {
+            //点击的关卡就是箭头指着的关卡，则直接进入并开始游戏
+            this.parent.addChild(SceneGame.Shared());
+            //传入点击的关卡所在的关卡数组中的下标
+            SceneGame.Shared().initLevel(icon.Level - 1);
+            this.parent.removeChild(this);
+        }
     };
     return SceneLevel;
 }(eui.Component));
