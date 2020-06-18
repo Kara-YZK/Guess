@@ -11,6 +11,15 @@ class SceneGame extends eui.Component implements eui.UIComponent {
 	//声明一个变量，用来表示所处的关卡
 	private levelIndex: number;
 
+	//游戏正解组
+	public group_win: eui.Group;
+	//下一关的组
+	public btn_next: eui.Button;
+	//成语解释
+	public lb_explain: eui.Label;
+	//成语出处
+	public lb_from: eui.Label;
+
 	private static shared: SceneGame;
 	public static Shared(): SceneGame {
 		if (SceneGame.shared == null) {
@@ -36,6 +45,8 @@ class SceneGame extends eui.Component implements eui.UIComponent {
 	//初始化
 	private init() {
 		this.btn_back.addEventListener(egret.TouchEvent.TOUCH_TAP, this.back_tap, this);
+		this.group_win.visible = false;
+		this.btn_next.addEventListener(egret.TouchEvent.TOUCH_TAP, this.next_tap, this);
 	}
 	/**
 	 * 返回按钮的响应函数
@@ -80,7 +91,7 @@ class SceneGame extends eui.Component implements eui.UIComponent {
 			word.visible = true;
 		}
 		//对答案区域进行初始化
-		for(var i: number = 0; i < this.group_answer.numChildren; i++){
+		for (var i: number = 0; i < this.group_answer.numChildren; i++) {
 			var answer = <AnswerWord>this.group_answer.getChildAt(i);
 			answer.SetSelectWord(null);
 			answer.visible = true;
@@ -106,24 +117,24 @@ class SceneGame extends eui.Component implements eui.UIComponent {
 	 */
 	public word_click(word: Word) {
 		var sel: AnswerWord = null;
-		for(var i: number = 0; i < this.group_answer.numChildren; i++){
+		for (var i: number = 0; i < this.group_answer.numChildren; i++) {
 			var answer = <AnswerWord>this.group_answer.getChildAt(i);
-			if(answer.SelectWord == null){
+			if (answer.SelectWord == null) {
 				sel = answer;
 				break;
 			}
 		}
 		//如果存在空白区，则把点击的文字上传到答案区
-		if(sel != null){
+		if (sel != null) {
 			sel.SetSelectWord(word);
 			//胜利判断
 			var check_str: string = "";
-			for(var i: number = 0; i < this.group_answer.numChildren; i++){
+			for (var i: number = 0; i < this.group_answer.numChildren; i++) {
 				var answer = <AnswerWord>this.group_answer.getChildAt(i);
 				check_str += answer.getWordText();
 			}
 			//如果答案区的拼成成语等于当前关卡的答案，则弹出正解场景页面
-			if(check_str == LevelDataManager.Shared().getLevel(this.levelIndex).answer){
+			if (check_str == LevelDataManager.Shared().getLevel(this.levelIndex).answer) {
 				this.showWin();
 			}
 		}
@@ -131,7 +142,21 @@ class SceneGame extends eui.Component implements eui.UIComponent {
 	/**
 	 * 显示正解场景
 	 */
-	private showWin(){
-		console.log("win");
+	private showWin() {
+		// console.log("win");
+		this.group_win.visible = true;
+		//获取游戏的关卡信息
+		var levelData = LevelDataManager.Shared().getLevel(this.levelIndex);
+		this.lb_from.text = levelData.content;
+		this.lb_explain.text = levelData.tip;
+	}
+	/**
+	 * 点击下一关按钮的响应函数
+	 */
+	private next_tap() {
+		//先把游戏正解场景隐藏起来
+		// this.group_win.visible = false;
+		//从新初始化游戏场景
+		this.initLevel(this.levelIndex + 1);
 	}
 }

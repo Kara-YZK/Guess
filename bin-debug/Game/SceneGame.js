@@ -31,6 +31,8 @@ var SceneGame = (function (_super) {
     //初始化
     SceneGame.prototype.init = function () {
         this.btn_back.addEventListener(egret.TouchEvent.TOUCH_TAP, this.back_tap, this);
+        this.group_win.visible = false;
+        this.btn_next.addEventListener(egret.TouchEvent.TOUCH_TAP, this.next_tap, this);
     };
     /**
      * 返回按钮的响应函数
@@ -127,7 +129,21 @@ var SceneGame = (function (_super) {
      * 显示正解场景
      */
     SceneGame.prototype.showWin = function () {
-        console.log("win");
+        // console.log("win");
+        this.group_win.visible = true;
+        //获取游戏的关卡信息
+        var levelData = LevelDataManager.Shared().getLevel(this.levelIndex);
+        this.lb_from.text = levelData.content;
+        this.lb_explain.text = levelData.tip;
+    };
+    /**
+     * 点击下一关按钮的响应函数
+     */
+    SceneGame.prototype.next_tap = function () {
+        //先把游戏正解场景隐藏起来
+        this.group_win.visible = false;
+        //从新初始化游戏场景
+        this.initLevel(this.levelIndex + 1);
     };
     return SceneGame;
 }(eui.Component));

@@ -54,4 +54,5 @@ class LevelDataItem{
 	public img: string;
 	public word: string;
 	public content: string;
+	public tip: string;
 }
