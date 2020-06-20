@@ -21,5 +21,10 @@
     "path": "Game/SceneGame.ts",
     "class": "SceneGame",
     "parentPath": ""
+  },
+  "172cd41b60e": {
+    "path": "Game/GameSetting.ts",
+    "class": "GameSetting",
+    "parentPath": ""
   }
 }

@@ -31,13 +31,18 @@ var SceneBegin = (function (_super) {
         //给两个按钮绑定点击方法
         this.btn_setting.addEventListener(egret.TouchEvent.TOUCH_TAP, this.setting_tap, this);
         this.btn_begin.addEventListener(egret.TouchEvent.TOUCH_TAP, this.begin_tap, this);
+        //设置游戏背景音乐默认是可播放状态
+        SoundManager.Shared().isMusic = true;
+        SoundManager.Shared().isSound = true;
     };
     /**
      * 点击设置按钮的响应函数
      */
     SceneBegin.prototype.setting_tap = function () {
+        //播放点击音效
+        SoundManager.Shared().playClick();
         //打开设置页面
-        console.log('打开游戏关卡场景');
+        this.addChild(GameSetting.Shared());
     };
     /**
      * 点击开始游戏的响应函数
@@ -45,6 +50,7 @@ var SceneBegin = (function (_super) {
     SceneBegin.prototype.begin_tap = function () {
         //打开游戏关卡场景
         console.log('打开游戏关卡场景');
+        SoundManager.Shared().playClick();
         //把游戏关卡场景添加到显示列表
         this.parent.addChild(SceneLevel.Shared());
         //移除游戏开始场景

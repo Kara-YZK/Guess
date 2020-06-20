@@ -52,6 +52,7 @@ class SceneGame extends eui.Component implements eui.UIComponent {
 	 * 返回按钮的响应函数
 	 */
 	private back_tap() {
+		SoundManager.Shared().playClick();
 		this.parent.addChild(SceneLevel.Shared());
 		this.parent.removeChild(this);
 	}
@@ -134,8 +135,12 @@ class SceneGame extends eui.Component implements eui.UIComponent {
 				check_str += answer.getWordText();
 			}
 			//如果答案区的拼成成语等于当前关卡的答案，则弹出正解场景页面
+
 			if (check_str == LevelDataManager.Shared().getLevel(this.levelIndex).answer) {
 				this.showWin();
+			}
+			if (check_str.length >= 4 && check_str !== LevelDataManager.Shared().getLevel(this.levelIndex).answer) {
+				SoundManager.Shared().playError();
 			}
 		}
 	}
@@ -144,6 +149,7 @@ class SceneGame extends eui.Component implements eui.UIComponent {
 	 */
 	private showWin() {
 		// console.log("win");
+		SoundManager.Shared().playWin();
 		this.group_win.visible = true;
 		//获取游戏的关卡信息
 		var levelData = LevelDataManager.Shared().getLevel(this.levelIndex);
@@ -154,9 +160,12 @@ class SceneGame extends eui.Component implements eui.UIComponent {
 	 * 点击下一关按钮的响应函数
 	 */
 	private next_tap() {
+		SoundManager.Shared().playClick();
 		//先把游戏正解场景隐藏起来
-		// this.group_win.visible = false;
+		this.group_win.visible = false;
 		//从新初始化游戏场景
 		this.initLevel(this.levelIndex + 1);
+		//记录最远关卡
+		SceneLevel.Shared().setMileStoneLevel(this.levelIndex);
 	}
 }

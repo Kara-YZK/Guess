@@ -17,7 +17,8 @@
 		"SceneLevel": "resource/Game/SceneLevel.exml",
 		"LevelIcon": "resource/Game/LevelIcon.exml",
 		"SceneGame": "resource/Game/SceneGame.exml",
-		"Word": "resource/Game/Word.exml"
+		"Word": "resource/Game/Word.exml",
+		"GameSetting": "resource/Game/GameSetting.exml"
 	},
 	"autoGenerateExmlsList": true,
 	"exmls": [
@@ -34,6 +35,7 @@
 		"resource/eui_skins/ToggleSwitchSkin.exml",
 		"resource/eui_skins/VScrollBarSkin.exml",
 		"resource/eui_skins/VSliderSkin.exml",
+		"resource/Game/GameSetting.exml",
 		"resource/Game/LevelIcon.exml",
 		"resource/Game/SceneBegin.exml",
 		"resource/Game/SceneGame.exml",

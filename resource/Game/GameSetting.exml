@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="GameSettingSkin" width="600" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="172cd41b60e" ></w:Config>
+	<e:Image width="437" height="322" source="MoneyBG_png" scale9Grid="19,15,176,35" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" verticalCenter="0"/>
+	<e:Label text="设置" y="442" horizontalCenter="0"/>
+	<e:Button id="btn_agree" label="" y="673" horizontalCenter="0">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="YesBtn_jpg" source.down="YesBtn1_jpg"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Group width="200" height="200" x="111.5" y="473">
+		<e:Button id="btn_music" label="" x="0" y="0">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="btn_music_png" source.down="btn_music_down_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Image id="img_music_disable" width="76" height="72" x="0" y="-1" source="btn_disable_png" touchEnabled="false" visible="false"/>
+	</e:Group>
+	<e:Group width="200" height="200" x="237" y="473">
+		<e:Button id="btn_sound" label="" x="0" y="0">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="btn_sound_png" source.down="btn_sound_down_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Image id="img_sound_disable" width="76" height="72" x="0" y="-1" source="btn_disable_png" touchEnabled="false" visible="false"/>
+	</e:Group>
+</e:Skin>

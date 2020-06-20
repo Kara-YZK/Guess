@@ -24,6 +24,7 @@ class Word extends eui.Component implements eui.UIComponent {
 	 * 点击选择区域的文字的响应方法
 	 */
 	protected word_tap() {
+		SoundManager.Shared().playWord();
 		//点击文字，让游戏场景去处理自己
 		SceneGame.Shared().word_click(this);
 	}
@@ -51,6 +52,7 @@ class AnswerWord extends Word{
 	 * 点击答案区域的字的响应方法
 	 */
 	protected word_tap(){
+		SoundManager.Shared().playWord();
 		//如果点击的答案区有内容（有文字）
 		if(this.SelectWord != null){
 			//清空该答案区

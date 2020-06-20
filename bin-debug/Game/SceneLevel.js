@@ -85,7 +85,12 @@ var SceneLevel = (function (_super) {
         }
         //滚动视图默认出现在最底部（最远关卡）
         this.group_level.scrollV = group.height - this.height;
-        //指示关卡的位置
+        //如果关卡过大，需要最大关卡在屏幕Y轴中间位置。
+        //拿到最远关卡(假设玩到20关)
+        if (milestrone > 20) {
+            this.group_level.scrollV = group.height - milestrone * spanY;
+        }
+        //指示箭头的位置
         //修改箭头的锚点为底部的尖端处
         this.arrow.anchorOffsetX = this.arrow.width / 2;
         this.arrow.anchorOffsetY = this.arrow.height;
@@ -103,6 +108,7 @@ var SceneLevel = (function (_super) {
      * 点击返回按钮的响应函数
      */
     SceneLevel.prototype.back_tap = function () {
+        SoundManager.Shared().playClick();
         this.parent.addChild(SceneBegin.Shared());
         this.parent.removeChild(this);
     };
@@ -110,6 +116,7 @@ var SceneLevel = (function (_super) {
      * 点击关卡的响应事件
      */
     SceneLevel.prototype.icon_tap = function (e) {
+        SoundManager.Shared().playClick();
         //获取被点击的关卡按钮
         var icon = e.currentTarget;
         if (this.sel_level != icon.Level) {
@@ -125,6 +132,22 @@ var SceneLevel = (function (_super) {
             //传入点击的关卡所在的关卡数组中的下标
             SceneGame.Shared().initLevel(icon.Level - 1);
             this.parent.removeChild(this);
+        }
+    };
+    /**
+     * 记录玩家过关的最远关卡，并且调整指示箭头的位置
+     */
+    SceneLevel.prototype.setMileStoneLevel = function (level) {
+        //拿到过关的关卡按钮
+        var icon = this.LevelIcons[level];
+        //设置该关卡为激活状态
+        icon.enabled = true;
+        //设置指示箭头到该关卡之上
+        this.arrow.x = icon.x + icon.width / 2;
+        this.arrow.y = icon.y;
+        //记录最远关卡
+        if (level > LevelDataManager.Shared().Milestone) {
+            LevelDataManager.Shared().Milestone = level;
         }
     };
     return SceneLevel;

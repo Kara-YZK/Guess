@@ -28,6 +28,7 @@ var Word = (function (_super) {
      * 点击选择区域的文字的响应方法
      */
     Word.prototype.word_tap = function () {
+        SoundManager.Shared().playWord();
         //点击文字，让游戏场景去处理自己
         SceneGame.Shared().word_click(this);
     };
@@ -57,6 +58,7 @@ var AnswerWord = (function (_super) {
      * 点击答案区域的字的响应方法
      */
     AnswerWord.prototype.word_tap = function () {
+        SoundManager.Shared().playWord();
         //如果点击的答案区有内容（有文字）
         if (this.SelectWord != null) {
             //清空该答案区
